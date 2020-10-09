@@ -1,28 +1,29 @@
 <?php 
 
-// connect to the database
-$conn = mysqli_connect('localhost', 'shaun', 'test1234', 'yahi_pizza');
-// check connection
-if(!$conn){
-    echo 'Connection error: '. mysqli_connect_error();
-}
+ // connect to the database
+ $conn = mysqli_connect('localhost', 'wekesa', 'Buyahi.cure7', 'yahi_pizza');
 
-// write query for all pizzas
-$sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
+ // check connection
+ if(!$conn){
+     echo 'Connection error: '. mysqli_connect_error();
+ }
 
-// get the result set (set of rows)
-$result = mysqli_query($conn, $sql);
+ // write query for all pizzas
+ $sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
 
-// fetch the resulting rows as an array
-$pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
+ // get the result set (set of rows)
+ $result = mysqli_query($conn, $sql);
 
-// free the $result from memory (good practise)
-mysqli_free_result($result);
+ // fetch the resulting rows as an array
+ $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-// close connection
-mysqli_close($conn);
+ // free the $result from memory (good practise)
+ mysqli_free_result($result);
 
-print_r($pizzas);
+ // close connection
+ mysqli_close($conn);
+
+ print_r($pizzas);
 
 
 ?>
@@ -30,10 +31,29 @@ print_r($pizzas);
 <!DOCTYPE html>
 <html lang="en">
 
-
+                                     
     <?php include('./templates/header.php'); ?>
 
     <h4 class="center grey-text">Pizzas</h4>
+    <div class="container">
+        <div class="row">
+            <?php foreach($pizzas as $pizzas) {?>
+                <div class="col s6 md3">
+                <div class="card z-depth-0">
+                    <div class="card-content center">
+                        <h6><?php echo htmlspecialchars($pizzas['title']); ?></h6>
+                        <div><?php echo htmlspecialchars($pizzas['ingredients']); ?></div>
+                    </div>
+                    <div class="card-action right-align">
+                        <a class="brand-text" href="#">More info</a>
+                    </div>
+                </div>
+                
+                </div>
+
+            <?php } ?>
+        </div>
+    </div>
 
 
     <?php include('./templates/footer.php'); ?>
