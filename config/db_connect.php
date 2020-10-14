@@ -1,7 +1,7 @@
 <?php
 
     // connect to the database
- $conn = mysqli_connect('localhost', 'wekesa', 'Buyahi.cure7', 'yahi_pizza');
+ $conn = mysqli_connect('localhost', 'shaun', 'Buyahi.cure7', 'yahi_pizza');
 
 var_dump($conn);
  // check connection
@@ -10,8 +10,6 @@ var_dump($conn);
  }
 
 
- if($conn){
-     echo 'DB connected';
- }
+ 
 
 ?>
